@@ -31,15 +31,11 @@ public class TCPEchoServer {
 
       byte[] received_msg = new byte[BUFSIZE];
       String checkBuffer = "";
+      System.out.println("Receiving: ");
       // Receive until client closes connection, indicated by -1 return
       while ((recvMsgSize = in.read(byteBuffer)) != -1) {
         for (int i = 0; i < received_msg.length; i++) {
-          String hex = Integer.toHexString(byteBuffer[i]);
-          System.out.print("0x" + hex + "\n");
-          if (hex.equals(checkBuffer) && checkBuffer == "0") {
-            break;
-          }
-          checkBuffer = hex;
+          System.out.print("0x" + Integer.toHexString(byteBuffer[i]) + "\n");
         }
         String sIn = new String(byteBuffer, 0, recvMsgSize, StandardCharsets.UTF_16).trim();
 
