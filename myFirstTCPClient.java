@@ -5,13 +5,18 @@ import java.time.*;
 
 public class myFirstTCPClient {
 
-    public static void byteToHex(byte[] messageBuffer) {
+    public static String byteToHex(byte[] messageBuffer, boolean trim) {
+        String result = "";
         for (int i = 0; i < messageBuffer.length; i++) {
-            System.out.print("0x" + String.format("%02x", messageBuffer[i]));
+            result += "0x" + String.format("%02x", messageBuffer[i]);
             if (i != messageBuffer.length - 1) {
-                System.out.print(" ");
+                result += " ";
             }
         }
+        if (trim) {
+            result = result.replace(" 0x00", "");
+        }
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
@@ -49,9 +54,7 @@ public class myFirstTCPClient {
         // Convert string array into byte array.
         byte[] messageBuffer = message.getBytes("UTF-16");
 
-        byteToHex(messageBuffer);
-
-        System.out.println("");
+        byteToHex(messageBuffer, false);
 
         long startTime = -1;
         long endTime = -1;
@@ -73,7 +76,7 @@ public class myFirstTCPClient {
         }
 
         System.out.println("Received: " + new String(messageBuffer));
-        byteToHex(messageBuffer);
+        byteToHex(messageBuffer, true);
 
         endTime = System.currentTimeMillis();
         System.out.println("Round-Trip Time: " + (endTime - startTime));
