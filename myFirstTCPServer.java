@@ -52,7 +52,7 @@ public class myFirstTCPServer {
           System.out.println(e);
           byte[] bytes = new byte[BUFSIZE];
           bytes[0] = -1;
-          out.write(bytes, 0, 4);
+          out.write(bytes, 0, recvMsgSize);
         }
 
       }
