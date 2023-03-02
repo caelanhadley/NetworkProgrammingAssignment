@@ -49,6 +49,7 @@ public class myFirstTCPServer {
               .println("Sending: " + "0x" + Integer.toHexString(bytes[0]) + " 0x" + Integer.toHexString(bytes[1]));
           out.write(bytes, 0, recvMsgSize);
         } catch (Exception e) {
+          System.out.println(e);
           byte[] bytes = new byte[BUFSIZE];
           bytes[0] = -1;
           out.write(bytes, 0, 4);
