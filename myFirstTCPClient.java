@@ -54,13 +54,11 @@ public class myFirstTCPClient {
         // Convert string array into byte array.
         byte[] messageBuffer = message.getBytes("UTF-16");
 
-        System.out.println(byteToHex(messageBuffer, false));
+        System.out.println("Sending : " + byteToHex(messageBuffer, false));
 
         long startTime = -1;
         long endTime = -1;
 
-        // Print buffer
-        System.out.println(messageBuffer);
         startTime = System.currentTimeMillis();
         out.write(messageBuffer);
         scan.close(); // Close the Scanner object
@@ -75,8 +73,7 @@ public class myFirstTCPClient {
             totalBytesRcvd += bytesRcvd;
         }
 
-        System.out.println("Received: " + new String(messageBuffer));
-        System.out.println(byteToHex(messageBuffer, true));
+        System.out.println("Received : " + byteToHex(messageBuffer, true));
 
         endTime = System.currentTimeMillis();
         System.out.println("Round-Trip Time: " + (endTime - startTime));

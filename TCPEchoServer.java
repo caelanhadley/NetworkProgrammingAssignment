@@ -34,10 +34,7 @@ public class TCPEchoServer {
       // Receive until client closes connection, indicated by -1 return
       while ((recvMsgSize = in.read(byteBuffer)) != -1) {
         for (int i = 0; i < received_msg.length; i++) {
-          System.out.print("0x" + Integer.toHexString(byteBuffer[i]));
-          if (i != received_msg.length - 1) {
-            System.out.print(" ");
-          }
+          System.out.print("0x" + Integer.toHexString(byteBuffer[i]) + "\n");
         }
         String sIn = new String(byteBuffer, 0, recvMsgSize, StandardCharsets.UTF_16).trim();
 
