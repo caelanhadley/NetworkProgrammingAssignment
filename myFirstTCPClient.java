@@ -46,7 +46,7 @@ public class myFirstTCPClient {
         byte[] messageBuffer = message.getBytes("UTF-16");
 
         for (int i = 0; i < messageBuffer.length; i++) {
-            System.out.println(String.format("%02x", messageBuffer[i]));
+            System.out.print("0x" + String.format("%02x", messageBuffer[i]));
         }
 
         System.out.println("");
