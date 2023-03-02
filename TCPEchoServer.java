@@ -50,7 +50,7 @@ public class TCPEchoServer {
         } catch (Exception e) {
           byte[] bytes = new byte[1];
           bytes[0] = -1;
-          out.write(bytes, 0, recvMsgSize);
+          out.write(bytes, 0, 1);
         }
 
       }
