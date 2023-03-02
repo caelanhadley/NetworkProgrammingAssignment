@@ -39,13 +39,13 @@ public class TCPEchoServer {
         }
         String string_in = new String(byteBuffer, 0, recvMsgSize, StandardCharsets.UTF_16).trim();
         System.out.println("Received: " + print_msg);
-        System.out.println("\n" + string_in);
+        System.out.println("Actual Message: " + string_in);
         try {
           Short short_return = Short.parseShort(string_in);
           byte[] bytes = new byte[BUFSIZE];
           bytes[0] = (byte) (short_return >> 8);
           bytes[1] = (byte) (short_return & 0xff);
-          System.out.println("0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
+          System.out.println("Sending: " + "0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
           out.write(bytes, 0, recvMsgSize);
         } catch (Exception e) {
           byte[] bytes = new byte[BUFSIZE];
