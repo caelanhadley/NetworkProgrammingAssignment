@@ -41,6 +41,7 @@ public class TCPEchoServer {
         System.out.println("Received: " + print_msg.replace("0x0 0x0", ""));
         System.out.println("\n" + sIn);
         try {
+          System.out.println(":::" + recvMsgSize);
           Short sOut = Short.parseShort(sIn);
           byte[] bytes = new byte[BUFSIZE];
           bytes[0] = (byte) (sOut >> 8);
@@ -50,7 +51,7 @@ public class TCPEchoServer {
         } catch (Exception e) {
           byte[] bytes = new byte[1];
           bytes[0] = -1;
-          out.write(bytes, 0, 1);
+          out.write(bytes, 0, 4);
         }
 
       }
