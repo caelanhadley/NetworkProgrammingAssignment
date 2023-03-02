@@ -7,6 +7,7 @@ public class myFirstTCPClient {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 2) {
+            System.out.println(args.length);
             throw new IllegalArgumentException("Parameter(s): <Server> [<Port>]");
         }
 
