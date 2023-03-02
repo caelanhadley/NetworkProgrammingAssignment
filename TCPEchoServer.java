@@ -1,5 +1,6 @@
 import java.net.*; // for Socket, ServerSocket, and InetAddress
 import java.io.*; // for IOException and Input/OutputStream
+import java.nio.charset.StandardCharsets;
 
 public class TCPEchoServer {
 
@@ -28,12 +29,24 @@ public class TCPEchoServer {
       InputStream in = clntSock.getInputStream();
       OutputStream out = clntSock.getOutputStream();
 
+      byte[] received_msg = new byte[BUFSIZE];
+      int j = 0;
       // Receive until client closes connection, indicated by -1 return
       while ((recvMsgSize = in.read(byteBuffer)) != -1) {
-        for (byte b : byteBuffer) {
-          System.out.println("Received byte : " + b);
+        for (int i = 0; i < received_msg.length; i++) {
+          System.out.println("0x" + Integer.toHexString(byteBuffer[i]) + " ");
         }
-        out.write(byteBuffer, 0, recvMsgSize);
+        String sIn = new String(byteBuffer, 0, recvMsgSize, StandardCharsets.UTF_16).trim();
+
+        System.out.println("\n" + sIn);
+        Short sOut = Short.parseShort(sIn);
+        byte[] bytes = new byte[BUFSIZE];
+        bytes[0] = (byte) (sOut >> 8);
+        bytes[1] = (byte) (sOut & 0xff);
+
+        System.out.println("0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
+
+        out.write(bytes, 0, recvMsgSize);
       }
 
       clntSock.close(); // Close the socket. We are done with this client!
