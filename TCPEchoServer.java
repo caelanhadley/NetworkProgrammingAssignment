@@ -40,13 +40,19 @@ public class TCPEchoServer {
         String sIn = new String(byteBuffer, 0, recvMsgSize, StandardCharsets.UTF_16).trim();
         System.out.println("Received: " + print_msg.replace("0x0 0x0", ""));
         System.out.println("\n" + sIn);
-        Short sOut = Short.parseShort(sIn);
-        byte[] bytes = new byte[BUFSIZE];
-        bytes[0] = (byte) (sOut >> 8);
-        bytes[1] = (byte) (sOut & 0xff);
+        try {
+          Short sOut = Short.parseShort(sIn);
+          byte[] bytes = new byte[BUFSIZE];
+          bytes[0] = (byte) (sOut >> 8);
+          bytes[1] = (byte) (sOut & 0xff);
+          System.out.println("0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
+          out.write(bytes, 0, recvMsgSize);
+        } catch (Exception e) {
+          byte[] bytes = new byte[1];
+          bytes[0] = -1;
+          out.write(bytes, 0, recvMsgSize);
+        }
 
-        System.out.println("0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
-        out.write(bytes, 0, recvMsgSize);
       }
 
       clntSock.close(); // Close the socket. We are done with this client!
