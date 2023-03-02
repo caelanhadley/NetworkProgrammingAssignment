@@ -49,7 +49,7 @@ public class TCPEchoServer {
           System.out.println("0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
           out.write(bytes, 0, recvMsgSize);
         } catch (Exception e) {
-          byte[] bytes = new byte[1];
+          byte[] bytes = new byte[BUFSIZE];
           bytes[0] = -1;
           out.write(bytes, 0, 4);
         }
