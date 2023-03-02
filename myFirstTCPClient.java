@@ -43,9 +43,13 @@ public class myFirstTCPClient {
 
         while (true) {
             System.out.print("Enter an integer in the range [0-32767]: ");
-            message = scan.nextLine();
-            int_message = Integer.parseInt(message);
-            if (int_message <= 32767 && int_message >= 0) {
+            try {
+                message = scan.nextLine();
+                int_message = Integer.parseInt(message);
+                if (int_message <= 32767 && int_message >= 0) {
+                    break;
+                }
+            } catch (Exception e) {
                 break;
             }
             System.out.println("Invalid input please try again...");

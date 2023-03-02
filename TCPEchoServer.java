@@ -30,15 +30,15 @@ public class TCPEchoServer {
       OutputStream out = clntSock.getOutputStream();
 
       byte[] received_msg = new byte[BUFSIZE];
-      String checkBuffer = "";
-      System.out.println("Receiving: ");
+      String print_msg = "";
+
       // Receive until client closes connection, indicated by -1 return
       while ((recvMsgSize = in.read(byteBuffer)) != -1) {
         for (int i = 0; i < received_msg.length; i++) {
-          System.out.print("0x" + Integer.toHexString(byteBuffer[i]) + "\n");
+          print_msg += "0x" + Integer.toHexString(byteBuffer[i]) + " ";
         }
         String sIn = new String(byteBuffer, 0, recvMsgSize, StandardCharsets.UTF_16).trim();
-
+        System.out.println("Received: " + print_msg.replace("0x0 0x0", ""));
         System.out.println("\n" + sIn);
         Short sOut = Short.parseShort(sIn);
         byte[] bytes = new byte[BUFSIZE];
@@ -46,7 +46,6 @@ public class TCPEchoServer {
         bytes[1] = (byte) (sOut & 0xff);
 
         System.out.println("0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
-
         out.write(bytes, 0, recvMsgSize);
       }
 
