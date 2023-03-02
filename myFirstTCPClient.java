@@ -36,16 +36,17 @@ public class myFirstTCPClient {
             System.out.println("Invalid input please try again...");
         }
 
-        // String final_message = "";
-
-        // for (int i = 0; i < int_message; i++) {
-        // char c = message.charAt(i);
-        // int ascii = (int) c;
-        // System.out.print(Integer.toHexString(ascii));
-        // }
+        for (int i = 0; i < int_message; i++) {
+            char c = message.charAt(i);
+            int ascii = (int) c;
+            System.out.print(Integer.toHexString(ascii));
+        }
 
         // Convert string array into byte array.
         byte[] messageBuffer = message.getBytes("UTF-16LE");
+        for (int i = 0; i < messageBuffer.length; i++) {
+            System.out.print(messageBuffer[i]);
+        }
 
         // Print buffer
         System.out.println(messageBuffer);
