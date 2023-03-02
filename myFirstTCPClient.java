@@ -1,8 +1,18 @@
 import java.net.*; // for Socket
 import java.io.*; // for IOException and Input/OutputStream
 import java.util.Scanner;
+import java.time.*;
 
 public class myFirstTCPClient {
+
+    public static void byteToHex(byte[] messageBuffer) {
+        for (int i = 0; i < messageBuffer.length; i++) {
+            System.out.print("0x" + String.format("%02x", messageBuffer[i]));
+            if (i != messageBuffer.length - 1) {
+                System.out.print(" ");
+            }
+        }
+    }
 
     public static void main(String[] args) throws IOException {
 
@@ -36,26 +46,19 @@ public class myFirstTCPClient {
             System.out.println("Invalid input please try again...");
         }
 
-        // for (int i = 0; i < int_message; i++) {
-        // char c = message.charAt(i);
-        // int ascii = (int) c;
-        // System.out.print("0x" + Integer.toHexString(ascii));
-        // }
-
         // Convert string array into byte array.
         byte[] messageBuffer = message.getBytes("UTF-16");
 
-        for (int i = 0; i < messageBuffer.length; i++) {
-            System.out.print("0x" + String.format("%02x", messageBuffer[i]));
-            if (i != messageBuffer.length - 1) {
-                System.out.print(" ");
-            }
-        }
+        byteToHex(messageBuffer);
 
         System.out.println("");
 
+        long startTime = -1;
+        long endTime = -1;
+
         // Print buffer
         System.out.println(messageBuffer);
+        startTime = System.currentTimeMillis();
         out.write(messageBuffer);
         scan.close(); // Close the Scanner object
 
@@ -70,7 +73,10 @@ public class myFirstTCPClient {
         }
 
         System.out.println("Received: " + new String(messageBuffer));
+        byteToHex(messageBuffer);
 
+        endTime = System.currentTimeMillis();
+        System.out.println("Round-Trip Time: " + (endTime - startTime));
         socket.close(); // Close the socket and its streams
     }
 }
