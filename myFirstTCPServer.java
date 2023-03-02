@@ -45,7 +45,8 @@ public class TCPEchoServer {
           byte[] bytes = new byte[BUFSIZE];
           bytes[0] = (byte) (short_return >> 8);
           bytes[1] = (byte) (short_return & 0xff);
-          System.out.println("Sending: " + "0x" + Integer.toHexString(bytes[0]) + "0x" + Integer.toHexString(bytes[1]));
+          System.out
+              .println("Sending: " + "0x" + Integer.toHexString(bytes[0]) + " 0x" + Integer.toHexString(bytes[1]));
           out.write(bytes, 0, recvMsgSize);
         } catch (Exception e) {
           byte[] bytes = new byte[BUFSIZE];
