@@ -36,7 +36,7 @@ public class TCPEchoServer {
         for (int i = 0; i < received_msg.length; i++) {
           String hex = Integer.toHexString(byteBuffer[i]);
           System.out.print("0x" + hex + "\n");
-          if (hex.equals(checkBuffer) && checkBuffer == "00") {
+          if (hex.equals(checkBuffer) && checkBuffer == "0") {
             break;
           }
           checkBuffer = hex;
