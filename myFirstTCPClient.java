@@ -36,7 +36,7 @@ public class myFirstTCPClient {
             System.out.println("Invalid input please try again...");
         }
 
-        for (int i = 0; i < int_message; i++) {
+        for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             int ascii = (int) c;
             System.out.print("0x" + Integer.toHexString(ascii));
