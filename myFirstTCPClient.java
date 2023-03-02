@@ -35,7 +35,11 @@ public class myFirstTCPClient {
             }
             System.out.println("Invalid input please try again...");
         }
+
+        // Convert string array into byte array.
         byte[] messageBuffer = message.getBytes("UTF-16");
+
+        // Print buffer
         System.out.println(messageBuffer);
         out.write(messageBuffer);
         scan.close(); // Close the Scanner object
