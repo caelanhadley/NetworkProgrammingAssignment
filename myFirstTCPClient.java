@@ -47,6 +47,9 @@ public class myFirstTCPClient {
 
         for (int i = 0; i < messageBuffer.length; i++) {
             System.out.print("0x" + String.format("%02x", messageBuffer[i]));
+            if (i != messageBuffer.length - 1) {
+                System.out.print(",");
+            }
         }
 
         System.out.println("");
