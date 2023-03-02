@@ -42,12 +42,8 @@ public class myFirstTCPClient {
             System.out.print("0x" + Integer.toHexString(ascii));
         }
 
-        // // Convert string array into byte array.
-        // byte[] messageBuffer = message.getBytes("UTF-16");
-        // String[] arr = {};
-        // for (int i = 0; i < messageBuffer.length; i++) {
-        // System.out.println(String.format("%02x", messageBuffer[i]));
-        // }
+        // Convert string array into byte array.
+        byte[] messageBuffer = message.getBytes("UTF-16");
 
         System.out.println("");
 
