@@ -45,7 +45,7 @@ public class myFirstTCPClient {
         // }
 
         // Convert string array into byte array.
-        byte[] messageBuffer = message.getBytes("UTF-16BE");
+        byte[] messageBuffer = message.getBytes("UTF-16LE");
 
         // Print buffer
         System.out.println(messageBuffer);
