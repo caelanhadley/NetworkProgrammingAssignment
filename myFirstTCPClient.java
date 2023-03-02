@@ -80,7 +80,7 @@ public class myFirstTCPClient {
         System.out.println("Received : " + byteToHex(messageBuffer, true));
 
         endTime = System.currentTimeMillis();
-        System.out.println("Round-Trip Time: " + (endTime - startTime));
+        System.out.println("Round-Trip Time: " + (endTime - startTime) + "ms");
         socket.close(); // Close the socket and its streams
     }
 }
